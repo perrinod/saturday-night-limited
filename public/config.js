@@ -34,7 +34,11 @@ function logError(_, error, status) {
 }
 
 function logSuccess(standing, status) {
-    $('#success').text('EBS request returned ' + ' (' + status + ')');
+    let json = 0;
+    json = JSON.parse(standing);
+
+    twitch.rig.log('EBS request returned: ' + json.message);
+    $('#success').text('EBS request returned: ' + json.message);
 }
 
 function logStandings(standing, status) {
@@ -207,7 +211,6 @@ twitch.onAuthorized((auth) => {
 
     $('#submit').removeAttr('disabled');
     setAuth(token);
-
 });
 
 $(function () {
